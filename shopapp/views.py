@@ -3,6 +3,7 @@ from .models import *
 from django.core.paginator import Paginator
 # Create your views here.
 def home(request):
+    print("hello")
     return HttpResponse("hello")
 
 
@@ -54,7 +55,7 @@ def contact(request):
 
             print(first_name,last_name,email,subject,message)
             contect_message.objects.create(first_name=first_name,last_name=last_name,email=email,subject=subject,message=message)
-
+        git config --global user.email "vekariyajenil9@gmail.com"
     
         contaxt={
             "uid":uid
