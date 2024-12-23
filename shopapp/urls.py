@@ -22,6 +22,8 @@ urlpatterns = [
 
     path('about', views.about, name='about'),
     path('cart', views.cart, name='cart'),
+    path('cart_add/<int:id>', views.cart_add, name='cart_add'),
+    path('cart_delete/<int:id>', views.cart_delete, name='cart_delete'),
     path('checkout', views.checkout, name='checkout'),
     path('contact', views.contact, name='contact'),
     path('', views.index, name='index'),
@@ -35,6 +37,16 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('profile', views.profile, name='profile'),
     path('search', views.search, name='search'),
+    path('review', views.review, name='review'),
+    path('add_wishlist/<int:id>', views.add_wishlist, name='add_wishlist'),
+    path('rating', views.rating, name='rating'),
+    path('cart_plus/<int:id>', views.cart_plus, name='cart_plus'),
+    path('cart_minus/<int:id>', views.cart_minus, name='cart_minus'),
+    path('category_page', views.category_page, name='category_page'),
+    path('forgate_password', views.forgate_password, name='forgate_password'),
+    path('confirm_password', views.confirm_password, name='confirm_password'),
+
+    path('wishlist_delete/<int:id>', views.wishlist_delete, name='wishlist_delete'),
 
 
 ]

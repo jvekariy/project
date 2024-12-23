@@ -1,137 +1,199 @@
 {% extends 'index.html' %}
 {% load static %}
+
 {% block content %}
-		<div class="breadcrumbs">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<p class="bread"><span><a href="{% url 'index'%}">Home</a></span> / <span>Men</span></p>
-					</div>
-				</div>
-			</div>
-		</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .wishlist-icon {
+            position: absolute; /* Position relative to the image */
+            top: 10px; /* Adjust according to your needs */
+            right: 25px; /* Adjust according to your needs */
+            color: rgb(241, 3, 3); /* Change color of the icon */
+            font-size: 20px; /* Icon size */
+            /* Optional background for better visibility */
+           
+            
+        }
+        .wishlist1-icon {
+            position: absolute; /* Position relative to the image */
+            top: 10px; /* Adjust according to your needs */
+            right: 25px; /* Adjust according to your needs */
+            color: rgb(49, 8, 255); /* Change color of the icon */
+            font-size: 20px; /* Icon size */
+            /* Optional background for better visibility */
+           
+            
+        }
 
-		<div class="breadcrumbs-two">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="breadcrumbs-img" style="background-image: url(static/images/cover-img-1.jpg);">
-							<h2>Men's</h2>
-						</div>
-						<div class="menu text-center">
-							<p><a href="#">New Arrivals</a> <a href="#">Best Sellers</a> <a href="#">Extended Widths</a> <a href="#">Sale</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+        .prod-img {
+            position: relative; /* To position the wishlist icon correctly */
+        }
 
-		<div class="colorlib-featured">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4 text-center">
-						<div class="featured">
-							<div class="featured-img featured-img-2" style="background-image: url(static/images/men.jpg);">
-								<h2>Casuals</h2>
-								<p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4 text-center">
-						<div class="featured">
-							<div class="featured-img featured-img-2" style="background-image: url(static/images/women.jpg);">
-								<h2>Dress</h2>
-								<p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4 text-center">
-						<div class="featured">
-							<div class="featured-img featured-img-2" style="background-image: url(static/images/item-11.jpg);">
-								<h2>Sports</h2>
-								<p><a href="#" class="btn btn-primary btn-lg">Shop now</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+        .featured-img {
+            background-size: cover;
+            background-position: center;
+            height: 200px; /* Adjust as necessary */
+        }
 
-		<div class="colorlib-product">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-						<h2>View All Products</h2>
-					</div>
-				</div>
-				<div class="row row-pb-md">
-					{% for i in pid %}
-					<div class="col-md-3 col-lg-3 mb-4 text-center">
-						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="{{ i.image.url }}" style="height: 200px;width: 300px;" class="img-fluid" alt="Free html5 bootstrap 4 template">
-							</a>
-							<div class="desc">
-									
-									<h2><a href="{% url 'product_detail' i.id %}">{{i.product_name}}</a></h2>
-								<span class="price">${{i.price}}</span>
-							</div>
-						</div>
-					</div>
-						{% endfor %}
-				</div>
-					
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<div class="block-27">
-		               <ul>
-						{% if pid.has_previous %}
-			               <li><a href="?page={{pid.previous_page_number}}"><i class="ion-ios-arrow-back"></i></a></li>
-						   {% endif %}
-		                  <!-- <li class="active"><span>1</span></li> -->
-		                  {% for i in pid.paginator.page_range %} 
-						  {% if i == pid.number %}
-						  <li class="active"><a href="?page={{i}}">{{i}}</a></li>
-						  {% else %}
-						  <li><a href="?page={{i}}">{{i}}</a></li>
-						  {% endif %}
-						  {% endfor %}
-		                  
-						  {% if pid.has_next %}
-		                  <li><a href="?page={{pid.next_page_number}}"><i class="ion-ios-arrow-forward"></i></a></li>
-						  {% endif %}
-		               </ul>
-		            </div>
-					</div>
-				</div>
-			</div>
-		</div>
+        .add-cart-icon {
+            background-color: rgb(0, 123, 255); /* Bootstrap primary color */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
 
-		<div class="colorlib-partner">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-						<h2>Trusted Partners</h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col partner-col text-center">
-						<img src="static/images/brand-1.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
-					</div>
-					<div class="col partner-col text-center">
-						<img src="static/images/brand-2.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
-					</div>
-					<div class="col partner-col text-center">
-						<img src="static/images/brand-3.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
-					</div>
-					<div class="col partner-col text-center">
-						<img src="static/images/brand-4.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
-					</div>
-					<div class="col partner-col text-center">
-						<img src="static/images/brand-5.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
-					</div>
-				</div>
-			</div>
-		</div>
-		{% endblock %}
-		
+        .add-cart-icon:hover {
+            background-color: rgb(0, 105, 217); /* Darker shade for hover */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="bread"><span><a href="{% url 'index' %}">Home</a></span> / <span>Men</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumbs-two">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="breadcrumbs-img" style="background-image: url( 'static/images/cover-img-1.jpg' );">
+                        <h2>Men's</h2>
+                    </div>
+                    <div class="menu text-center">
+                        <p><a href="#">New Arrivals</a> <a href="#">Best Sellers</a> <a href="#">Extended Widths</a> <a href="#">Sale</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="colorlib-featured">
+        <div class="container">
+            <div class="row">
+                {% for i in pud %}
+                <div class="col-sm-4 text-center">
+                    <div class="featured">
+                        <div class="featured-img featured-img-2" style="background-image: url({{i.image.url}});">
+                            <h2>sport</h2>
+                            <p><a href="?ceid={{i.id}}" class="btn btn-primary btn-lg">Shop now</a></p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="colorlib-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+                    <h2>View All Products</h2>
+                </div>
+            </div>
+            <div class="row row-pb-md">
+                {% for i in pid %}
+                <div class="col-md-3 col-lg-3 mb-4 text-center">
+                    <div class="product-entry border">
+                        <a href="#" class="prod-img">
+                            <img src="{{ i.image.url }}" style="height: 200px;width: 300px;" class="img-fluid" alt="{{ i.product_name }}">
+                            
+                            {% if i.id in l1 %}
+                            <a href="{% url 'add_wishlist' i.id %}" class="wishlist-icon">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </a>
+
+                            
+                            {% else %}
+                            <a href="{% url 'add_wishlist' i.id %}" class="wishlist1-icon">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </a>
+                            {% endif %}
+                            
+                        </a>
+                        <div class="desc">
+                            <h2><a href="{% url 'product_detail' i.id %}">{{ i.product_name }}</a></h2>
+                            <span class="price">${{ i.price }}</span>
+                            <p>
+                                <a href="{% url 'cart_add' i.id %}" class="btn btn-primary add-cart-icon">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to Cart
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="block-27">
+                        <ul>
+                            {% if pid.has_previous %}
+                            <li><a href="?page={{ pid.previous_page_number }}"><i class="ion-ios-arrow-back"></i></a></li>
+                            {% endif %}
+                            {% for i in pid.paginator.page_range %}
+                            {% if i == pid.number %}
+                            <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                            {% if pid.has_next %}
+                            <li><a href="?page={{ pid.next_page_number }}"><i class="ion-ios-arrow-forward"></i></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="colorlib-partner">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+                    <h2>Trusted Partners</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col partner-col text-center">
+                    <img src="{% static 'images/brand-1.jpg' %}" class="img-fluid" alt="Brand 1">
+                </div>
+                <div class="col partner-col text-center">
+                    <img src="{% static 'images/brand-2.jpg' %}" class="img-fluid" alt="Brand 2">
+                </div>
+                <div class="col partner-col text-center">
+                    <img src="{% static 'images/brand-3.jpg' %}" class="img-fluid" alt="Brand 3">
+                </div>
+                <div class="col partner-col text-center">
+                    <img src="{% static 'images/brand-4.jpg' %}" class="img-fluid" alt="Brand 4">
+                </div>
+                <div class="col partner-col text-center">
+                    <img src="{% static 'images/brand-5.jpg' %}" class="img-fluid" alt="Brand 5">
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+</body>
+</html>

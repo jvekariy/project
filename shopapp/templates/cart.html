@@ -1,6 +1,56 @@
 {% extends 'index.html'%}
 {% load static %}
 {% block content %}
+<style>
+	@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+body {
+    background-color: #eee;
+    font-family: 'Calibri', sans-serif !important;
+}
+
+.mt-100{
+   margin-top:100px;
+
+}
+
+
+.card {
+    margin-bottom: 30px;
+    border: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    letter-spacing: .5px;
+    border-radius: 8px;
+    -webkit-box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+    box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+}
+
+.card .card-header {
+    background-color: #fff;
+    border-bottom: none;
+    padding: 24px;
+    border-bottom: 1px solid #f6f7fb;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+x
+
+
+.card .card-body {
+    padding: 30px;
+    background-color: transparent;
+}
+
+.btn-primary, .btn-primary.disabled, .btn-primary:disabled {
+    background-color: #bd0202af!important;
+    border-color: #a70000a5!important;
+}
+</style>
 		<div class="breadcrumbs">
 			<div class="container">
 				<div class="row">
@@ -32,148 +82,118 @@
 						</div>
 					</div>
 				</div>
-				<div class="row row-pb-lg">
-					<div class="col-md-12">
-						<div class="product-name d-flex">
-							<div class="one-forth text-left px-4">
-								<span>Product Details</span>
-							</div>
-							<div class="one-eight text-center">
-								<span>Price</span>
-							</div>
-							<div class="one-eight text-center">
-								<span>Quantity</span>
-							</div>
-							<div class="one-eight text-center">
-								<span>Total</span>
-							</div>
-							<div class="one-eight text-center px-4">
-								<span>Remove</span>
-							</div>
-						</div>
-						<div class="product-cart d-flex">
-							<div class="one-forth">
-								<div class="product-img" style="background-image: url(static/images/item-6.jpg);">
-								</div>
-								<div class="display-tc">
-									<h3>Product Name</h3>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<span class="price">$68.00</span>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<input type="text" id="quantity" name="quantity" class="form-control input-number text-center" value="1" min="1" max="100">
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<span class="price">$120.00</span>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<a href="#" class="closed"></a>
-								</div>
-							</div>
-						</div>
-						<div class="product-cart d-flex">
-							<div class="one-forth">
-								<div class="product-img" style="background-image: url(static/images/item-7.jpg);">
-								</div>
-								<div class="display-tc">
-									<h3>Product Name</h3>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<span class="price">$68.00</span>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<form action="#">
-										<input type="text" name="quantity" class="form-control input-number text-center" value="1" min="1" max="100">
-									</form>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<span class="price">$120.00</span>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<a href="#" class="closed"></a>
-								</div>
-							</div>
-						</div>
-						<div class="product-cart d-flex">
-							<div class="one-forth">
-								<div class="product-img" style="background-image: url(static/images/item-8.jpg);">
-								</div>
-								<div class="display-tc">
-									<h3>Product Name</h3>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<span class="price">$68.00</span>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<input type="text" id="quantity" name="quantity" class="form-control input-number text-center" value="1" min="1" max="100">
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<span class="price">$120.00</span>
-								</div>
-							</div>
-							<div class="one-eight text-center">
-								<div class="display-tc">
-									<a href="#" class="closed"></a>
-								</div>
-							</div>
-						</div>
+				
 					</div>
-				</div>
-				<div class="row row-pb-lg">
-					<div class="col-md-12">
-						<div class="total-wrap">
-							<div class="row">
-								<div class="col-sm-8">
-									<form action="#">
-										<div class="row form-group">
-											<div class="col-sm-9">
-												<input type="text" name="quantity" class="form-control input-number" placeholder="Your Coupon Number...">
-											</div>
-											<div class="col-sm-3">
-												<input type="submit" value="Apply Coupon" class="btn btn-primary">
-											</div>
+					{% if pid.count == 0 %}
+					<div class="container-fluid  mt-100">
+						<div class="row">
+						
+						   <div class="col-md-12">
+						   
+								<div class="card">
+									<div class="card-header">
+											<h5>Cart</h5>
+									</div>
+									<div class="card-body cart">
+										<div class="col-sm-12 empty-cart-cls text-center">
+											<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+											<h3><strong>Your Cart is Empty</strong></h3>
+											<h4>Add something to make me happy :)</h4>
+											<a href="{% url 'men'%}" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+														
+													
 										</div>
-									</form>
+									</div>
 								</div>
-								<div class="col-sm-4 text-center">
-									<div class="total">
-										<div class="sub">
-											<p><span>Subtotal:</span> <span>$200.00</span></p>
-											<p><span>Delivery:</span> <span>$0.00</span></p>
-											<p><span>Discount:</span> <span>$45.00</span></p>
+							   
+						   
+						   	</div>
+						
+						</div>
+					   
+					</div>
+					{% else %}
+					<div class="container-fluid pt-5">
+						<div class="row px-xl-5">
+							<div class="col-lg-8 table-responsive mb-5">
+								<table class="table table-bordered text-center mb-0">
+									<thead class="bg-secondary text-dark">
+										<tr>
+											<th>Products</th>
+											<th>Price</th>
+											<th>Quantity</th>
+											<th>Total</th>
+											<th>Remove</th>
+										</tr>
+									</thead>
+									<tbody class="align-middle">
+										{% for i in pid %}
+										<tr>
+											<td class="align-middle"><img src="{{i.image.url}}" alt="" style="width: 50px;"> {{i.product_name}}</td>
+											<td class="align-middle">${{i.price}}</td>
+											<td class="align-middle">
+												<div class="input-group quantity mx-auto" style="width: 100px;">
+													<div class="input-group-btn">
+														<a href="{% url 'cart_minus' i.id %}"	 class="btn btn-sm btn-primary btn-minus">
+															<i class="fa fa-minus"></i>
+														</a>
+													</div>
+													<input type="text" class="form-control form-control-sm bg-secondary text-center" value="{{i.quantity}}" readonly>
+													<div class="input-group-btn">
+														<a href="{% url 'cart_plus' i.id %}" class="btn btn-sm btn-primary btn-plus">
+															<i class="fa fa-plus"></i>
+														</a>
+													</div>
+												</div>
+												
+											</td>
+											<td class="align-middle">${{i.total}}</td>
+											<td class="align-middle"><a href="{% url 'cart_delete' i.id %}"><i class="fa fa-times"></i></a></td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+							<div class="col-lg-4">
+								<form class="mb-5" action="">
+									<div class="input-group">
+										<input type="text" class="form-control p-4" placeholder="Coupon Code">
+										<div class="input-group-append">
+											<button class="btn btn-primary">Apply Coupon</button>
 										</div>
-										<div class="grand-total">
-											<p><span><strong>Total:</strong></span> <span>$450.00</span></p>
+									</div>
+								</form>
+								<div class="card border-secondary mb-5">
+									<div class="card-header bg-secondary border-0">
+										<h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
+									</div>
+									<div class="card-body">
+										<div class="d-flex justify-content-between mb-3 pt-1">
+											<h6 class="font-weight-medium">Subtotal</h6>
+											<h6 class="font-weight-medium">${{subtotal}}</h6>
 										</div>
+										<div class="d-flex justify-content-between">
+											<h6 class="font-weight-medium">Shipping</h6>
+											<h6 class="font-weight-medium">${{shipping}}</h6>
+										</div>
+									</div>
+									<div class="card-footer border-secondary bg-transparent">
+										<div class="d-flex justify-content-between mt-2">
+											<h5 class="font-weight-bold">Total</h5>
+											<h5 class="font-weight-bold">${{total}}</h5>
+										</div>
+										
+										
+									<a href="{% url 'checkout' %}" class="btn btn-block btn-primary my-3 py-3">process to CheckOut</a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					{% endif %}
+					
 				</div>
+				
 
 				<div class="row">
 					<div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">

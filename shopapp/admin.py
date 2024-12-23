@@ -5,3 +5,8 @@ from .models import *
 admin.site.register(register)
 admin.site.register(product)
 admin.site.register(contect_message)
+admin.site.register(user_review)
+admin.site.register(wishlist_add)
+admin.site.register(add_to_cart)
+admin.site.register(checkout_page)
+admin.site.register(category)

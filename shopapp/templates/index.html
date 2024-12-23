@@ -5,7 +5,7 @@
 	<title>Footwear - Free Bootstrap 4 Template by Colorlib</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
 	
@@ -35,6 +35,8 @@
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<link href="{% static 'ok/css/style.css' %}" rel="stylesheet">
 
 	</head>
 	<body>
@@ -71,6 +73,8 @@
 									<li><a href="{% url 'cart'%}">Shopping Cart</a></li>
 									<li><a href="{% url 'checkout'%}">Checkout</a></li>
 									<li><a href="{% url 'wishlist'%}">Wishlist</a></li>
+									<li><a href="{% url 'rating'%}">rating</a></li>
+
 									<li><a href="{% url 'profile'%}">profile</a></li>
 									
 									{% if "email" in request.session %}
@@ -312,10 +316,10 @@
 					<div class="col footer-col">
 						<h4>Contact Information</h4>
 						<ul class="colorlib-footer-links">
-							<li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>
+							<li>Chimanlal Girdharlal Road, Mithakhali, Navrangpura  <br>Ahmedabad</li>
 							<li><a href="tel://1234567920">+91 7623814413</a></li>
-							<li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-							<li><a href="#">yoursite.com</a></li>
+							<li><a href="mailto:info@yoursite.com">info@footwear.com</a></li>
+							<li><a href="#">footwear.com</a></li>
 						</ul>
 					</div>
 				</div>
