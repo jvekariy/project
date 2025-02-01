@@ -274,6 +274,9 @@
 			.modal form label {
 			  font-weight: normal;
 			}
+			.razorpay-payment-button{
+				display:none;
+			}
 			
 				  </style>
 			
@@ -411,6 +414,12 @@
 				  </div>
 				  <form action="{% url 'checkout' %}" method="post">
 					{% csrf_token %}
+					<script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_bilBagOBVTi4lE"
+		data-amount={{response.amount}} data-currency={{response.currency}} data-buttontext="Pay with Razorpay"
+		data-name="{{request.user}}" data-theme.color="#F37254" data-description="" data-image=""
+		data-prefill.name={{request.user.username}} data-prefill.email={{request.user.email}}>
+		</script>
+	    <input type="hidden" custom="Hidden Element" name="hidden">
 				<table class="table table-striped table-hover">
 					<thead>
 					  <tr>
@@ -465,6 +474,7 @@
 										{% endfor %}
 										<li><span>Subtotal</span> <span>${{subtotal}}</span></li>
 										<li><span>Shipping</span> <span>${{shipping}}</span></li>
+										<li><span>Discount</span> <span>${{discount}}</span></li>
 										<li><span>Order Total</span> <span>${{total}}</span></li>
 									</ul>
 								</div>

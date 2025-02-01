@@ -56,7 +56,7 @@ def cart(request):
     if "email" in request.session:
         uid=register.objects.get(email=request.session['email'])
         print(uid)
-        pid=add_to_cart.objects.filter(register=uid).order_by("-id")
+        pid=add_to_cart.objects.filter(register=uid,order_status=False).order_by("-id")
         caid=user_coupon.objects.filter(user=uid,status=True).order_by("-id").first()
 
         if pid.count() == 0 and caid != None:
@@ -141,20 +141,25 @@ def cart_delete(request,id):
     
     
 # ***************************** CHECKOUT ************************************
+import razorpay
 import string
 
 def checkout(request):
     if "email" in request.session:
         uid=register.objects.get(email=request.session['email'])
-        pid=add_to_cart.objects.filter(register=uid).order_by("-id")
+        pid=add_to_cart.objects.filter(register=uid,order_status=False).order_by("-id")
         addid=checkout_page.objects.filter(register=uid)
+        caid=user_coupon.objects.filter(user=uid,status=True).order_by("-id").first()
         
         l1=[]
         subtotal = 0
+        discount=caid.coupon.discount
         shipping = 40
         for i in pid:
             l1.append(i.total)
-        print(l1)
+
+        if caid != None:
+            discount=caid.coupon.discount
         subtotal=sum(l1)
         total=subtotal+shipping
         
@@ -165,7 +170,11 @@ def checkout(request):
             order_obj=order.objects.create(order_id=order_id,user=uid,address=aid)
             order_obj.product.set(pid)
             order_obj.total=sum(i.total for i in pid) 
-            order_obj.save()
+            order_obj.save() 
+            for i in pid:
+                i.order_status=True
+                i.save()
+        
 
         oid=order.objects.filter(user=uid)
         print(oid)
@@ -173,15 +182,29 @@ def checkout(request):
             print(i.datetime)
             for n in i.product.all():
                 print(n.total)
+        amount = total*100 #100 here means 1 dollar,1 rupree if currency INR
+        client = razorpay.Client(auth=('rzp_test_bilBagOBVTi4lE','77yKq3N9Wul97JVQcjtIVB5z'))
+        response = client.order.create({'amount':amount,'currency':'INR','payment_capture':1})
+        print(response,"")    
+        if pid.count() == 0:
+            shipping=0
+            subtotal=0
+            discount=0
+            total=0
 
         contaxt={
             "uid":uid,
             "pid":pid, 
             "l1":l1,
             "subtotal" : subtotal,
+            "discount" : discount,
             "shipping" : shipping,
             "total" : total,
             "addid":addid,
+            "response":response,
+            "caid":caid,
+            "amount":amount,
+
 
         }
 

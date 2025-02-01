@@ -75,6 +75,8 @@ class add_to_cart(models.Model):
     price=models.IntegerField()
     quantity=models.IntegerField()
     total=models.IntegerField()
+    order_status=models.BooleanField(default=False)
+
 
     def __str__(self) -> str:
         return self.product_name
