@@ -80,18 +80,43 @@ class add_to_cart(models.Model):
         return self.product_name
     
 class checkout_page(models.Model):
-    first_name=models.CharField(max_length=50)
-    last_name=models.CharField(max_length=50)
-    address=models.CharField(max_length=50)
-    city=models.CharField(max_length=50)
-    state=models.CharField(max_length=50)
-    zip_code=models.IntegerField()
+    register=models.ForeignKey(register,on_delete=models.CASCADE,blank=True,null=True)
+    name=models.CharField(max_length=50,blank=True,null=True)
     email=models.EmailField(max_length=50)
+    address=models.CharField(max_length=50)
+    message=models.CharField(max_length=50,blank=True,null=True)
     phone=models.IntegerField()
 
     def __str__(self) -> str:
-        return self.email
+        return self.name    
+
+class coupon(models.Model):
+    coupon_code=models.CharField(max_length=50)
+    discount=models.IntegerField()
     
+    def __str__(self) -> str:
+        return self.coupon_code
+
+class user_coupon(models.Model):
+    user=models.ForeignKey(register,on_delete=models.CASCADE)
+    coupon=models.ForeignKey(coupon,on_delete=models.CASCADE)
+    status=models.BooleanField(blank=True,null=True)
+
+
+class order(models.Model):
+    order_id=models.CharField(max_length=20)
+    user=models.ForeignKey(register,on_delete=models.CASCADE)
+    address=models.ForeignKey(checkout_page,on_delete=models.CASCADE)
+    product=models.ManyToManyField(add_to_cart)
+    total=models.IntegerField(blank=True,null=True)
+    datetime=models.DateTimeField(auto_now_add=True,blank=True,null=True)
+
+    
+        
+
+
+
+        
 
 
 

@@ -1,0 +1,84 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block content %}
+
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="bread"><span><a href="index.html">Home</a></span> / <span>Shopping Cart</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="colorlib-product">
+			<div class="container">
+				<div class="row row-pb-lg">
+					<div class="col-md-10 offset-md-1">
+						<div class="process-wrap">
+							<div class="process text-center active">
+								<p><span>01</span></p>
+								<h3>Shopping Cart</h3>
+							</div>
+							<div class="process text-center">
+								<p><span>02</span></p>
+								<h3>Checkout</h3>
+							</div>
+							<div class="process text-center">
+								<p><span>03</span></p>
+								<h3>Order Complete</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row row-pb-lg">
+					<div class="col-md-12">
+						<div class="product-name d-flex">
+							<div class="one-forth text-left px-4">
+								<span>Order_id</span>
+							</div>
+							
+							<div class="one-eight text-center">
+								<span>Address</span>
+							</div>
+							
+							<div class="one-eight text-center">
+								<span>Total</span>
+							</div>
+							
+						</div>
+						{% for i in odr %}
+						<div class="product-cart d-flex">
+							<div class="one-forth">
+								
+								<div class="display-tc">
+									<h3><a href="/single_order/{{i.order_id}}">{{i.order_id}}</a></h3>
+								</div>
+								
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<span class="price">{{i.address.address}}</span>
+								</div>
+							</div>
+							
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<span class="price">${{i.total}}</span>
+								</div>
+							</div>
+							
+						</div>
+						{% endfor %}
+						
+						
+					</div>
+				</div>
+				
+
+				
+			</div>
+		</div>
+{% endblock %}

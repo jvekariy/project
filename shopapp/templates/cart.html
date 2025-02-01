@@ -154,10 +154,19 @@ x
 									</tbody>
 								</table>
 							</div>
+							<h1>{{msg}}</h1>
+							{% if messages %}
+							<ul class="messages">
+								{% for message in messages %}
+								<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+								{% endfor %}
+							</ul>
+							{% endif %}
 							<div class="col-lg-4">
-								<form class="mb-5" action="">
+								<form class="mb-5" action="{% url 'coupan' %}" method="post">
+									{% csrf_token %}
 									<div class="input-group">
-										<input type="text" class="form-control p-4" placeholder="Coupon Code">
+										<input type="text" class="form-control p-4" name="coupon_code" placeholder="Coupon Code">
 										<div class="input-group-append">
 											<button class="btn btn-primary">Apply Coupon</button>
 										</div>
@@ -175,6 +184,11 @@ x
 										<div class="d-flex justify-content-between">
 											<h6 class="font-weight-medium">Shipping</h6>
 											<h6 class="font-weight-medium">${{shipping}}</h6>
+										</div>
+										<br>
+										<div class="d-flex justify-content-between">
+											<h6 class="font-weight-medium">Discount</h6>
+											<h6 class="font-weight-medium">${{discount}}</h6>
 										</div>
 									</div>
 									<div class="card-footer border-secondary bg-transparent">

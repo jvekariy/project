@@ -45,8 +45,13 @@ urlpatterns = [
     path('category_page', views.category_page, name='category_page'),
     path('forgate_password', views.forgate_password, name='forgate_password'),
     path('confirm_password', views.confirm_password, name='confirm_password'),
-
+    path('coupan', views.coupan, name='coupan'),
+    path('add_address', views.add_address, name='add_address'),
+    path('edit_address/<int:id>', views.edit_address, name='edit_address'),
+    path('delete_address/<int:id>', views.delete_address, name='delete_address'),
     path('wishlist_delete/<int:id>', views.wishlist_delete, name='wishlist_delete'),
+    path('single_order/<str:id>', views.single_order, name='single_order'),
+    path('all_order', views.all_order, name='all_order'),
 
 
 ]
